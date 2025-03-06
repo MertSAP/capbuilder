@@ -8,7 +8,7 @@ CAP Builder has the following features:
 - AI Data Generation
 - Downloading a zip of all generation code including a fiori elements application
 - Live Preview of your application
-- Downloading your tempalte file to share with othes.
+- Downloading your template file to share with othes.
 
 Through the User Interface the following aspects of a Service/Application can be modelled:
 
@@ -27,7 +27,7 @@ Through the User Interface the following aspects of a Service/Application can be
 
 CAPBuilder aims to automate the first 50% of Development, allowing Developers to focus on the most value adding parts.
 
-Why is this tool required when SAP has Joule? This is a free(AI Costs apply) Open Source alternative. Not all of have access to SAP Build Code! Plus there is something nice about Open Source tools to go with our Open Source Technology Stack
+Why is this tool required when SAP has Joule? This is a free(AI Costs apply) Open Source alternative. Not all of us have access to SAP Build Code! Plus there is something nice about Open Source tools to go with an Open Source Technology Stack
 
 # Demo
 
@@ -48,6 +48,7 @@ cds serve
 - You can get your API Key here: https://platform.openai.com/docs/overview
 - You will need buy credits. Each request costs several around $0.02 USD
 - Once you have a key you can configure the AI via the Configure AI action in the top right of the app
+- See here for a somple prompt https://github.com/MertSAP/capbuilder/blob/main/ai/example_request.txt
 
 ## User Interface - Note Worthy Options
 
