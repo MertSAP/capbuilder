@@ -1,0 +1,30 @@
+Create an application for managing Trips. 
+
+Each Trip has a:
+ - Name
+ - Purpose
+ - Start Date
+ - End Date
+ - Status which is a lookup and contains: New, Booked, Completed, Cancelled
+ 
+Each trip can have many accommodation bookings. Each accommodation booking has:
+- Name
+- Checkin Date
+- Checkout Date
+- Type which include Hotel, B&B, AirBNB
+- Cost
+
+Each accommodation bookings can have many special notes. Each note has:
+- A lookup for note category
+- Comment
+- Cost
+
+Each trip can also have many transport bookings. Transport bookings has:
+- Journey Name
+- Journey Date
+- Journey Type such as train, bus, flight
+- Journey cost
+
+Finally trip has 2 actions:
+- Calculate discount that has 1 parameter for a percentage
+- Calculate total cost

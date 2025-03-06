@@ -1,6 +1,16 @@
 # Background
 
-CAPBuiilder is a SAP Cloud Application Programming Model(CAP) Application that allows Developers to jumpstart their projects by defining and modelling Service/Applications via a Fiori Interface. Through the User Interface the following aspects of a Service/Application can be modelled:
+CAPBuilder is a SAP Cloud Application Programming Model(Node.js) Application that allows Developers to jumpstart their projects by defining and modelling Service/Applications via a Fiori Interface, and then download a working project
+
+CAP Builder has the following features:
+
+- AI Project creation via a text prompt
+- AI Data Generation
+- Downloading a zip of all generation code including a fiori elements application
+- Live Preview of your application
+- Downloading your tempalte file to share with othes.
+
+Through the User Interface the following aspects of a Service/Application can be modelled:
 
 - Entities - Both Master Data and Managed
   - The Fields of an Entity including
@@ -15,48 +25,29 @@ CAPBuiilder is a SAP Cloud Application Programming Model(CAP) Application that a
 - Entity Associations - N Levels Deep
 - Roles and Authorisations for the Service
 
-Through the Generate Template Action, a JSON File is generated. This JSON file can then be used as input in AppTemplater's companion CLI tool CAPGEN. CAPGEN generates a working SAP CAP project including:
+CAPBuilder aims to automate the first 50% of Development, allowing Developers to focus on the most value adding parts.
 
-- A working Fiori Applications N Levels deep
-- Schema, Services, Value Helps, Roles, Annotations, and Localisation all done!
-- Initial data csv files with headerline generated
-
-AppTemplater and CAPGEN aim to automate the first 50% of Development, allowing Developers to focus on the most value adding parts.
-
-A wide variety of tools already exist but this tool is:
-
-- Fast! CAPGEN can generate a project in seconds
-- Open Source and written in technologies the target audience is familiar with
-- It can run locally! No special tools or licensing
-
-A two step process with AppTemplater and CAPGEN has been used because:
-
-- AppTemplater's terminology is very SAP CAP/RAP specific but this tool could be used to model an application in any technology
-- It allows other generators to be developed by the community such as using the JSON to generate a RAP Application without the need to change AppTemplater
-- The JSON file can be easily shared between developers
+Why is this tool required when SAP has Joule? This is a free(AI Costs apply) Open Source alternative. Not all of have access to SAP Build Code! Plus there is something nice about Open Source tools to go with our Open Source Technology Stack
 
 # Demo
 
-https://www.youtube.com/watch?v=mF02MeVATZw
+https://youtu.be/18X6PksGrnw
 
 # Getting Started
 
 ```
-git clone https://github.com/MertSAP/AppTemplater.git
-cd AppTemplater
-cds deploy --to sql
+git clone https://github.com/MertSAP/capbuilder.git
+cd capbuilder
+npm i
 cds serve
 ```
 
-# Template Files
+# Using the AI Features
 
-TemplateFiles are generated and saved in the following directory
-
-```
-/templateFiles
-```
-
-Template Files can also be placed here and loaded via the Load Template Action
+- CAP Builder using OpenAI and you will need a API Key to use these features
+- You can get your API Key here: https://platform.openai.com/docs/overview
+- You will need buy credits. Each request costs several around $0.02 USD
+- Once you have a key you can configure the AI via the Configure AI action in the top right of the app
 
 ## User Interface - Note Worthy Options
 
