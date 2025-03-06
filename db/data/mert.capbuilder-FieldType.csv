@@ -1,0 +1,12 @@
+TypeCode;TypeName;TypeArgs;TypeArgsStatus;
+Integer;Integer;;N
+String;String;L;O
+Time;Time;;N
+Date;Date;;N
+TimeStamp;TimeStamp;;N
+Decimal;Decimal;PC;O
+Currency;Currency;;N
+UUID;UUID;;N
+Boolean;Boolean;;N
+Country;Country;;N
+Binary;Binary;L;O

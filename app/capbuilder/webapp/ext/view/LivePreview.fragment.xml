@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+                         xmlns="sap.m">
+    <Dialog id= "liveDialog" title="Live Preview" class="sapUiResponsiveContentPadding" beforeOpen=".onBeforeOpen"
+            afterClose=".onAfterClose">
+        <content>
+           <VBox id="liveVBOX">
+                <Label id = "liveLabel" text="Open a terminal and run the following commands:"/>
+                <Label id = "liveDirectory" text="{customModel>/directory}"/>
+                <Label id = "liveWatch" text="CDS w"/>
+            </VBox>
+              </content>
+        <beginButton>
+            <Button id="liveOK" text="OK" press=".onOk" type="Emphasized" enabled="true"/>
+        </beginButton>
+        <endButton>
+            <Button id="liveCancel" text="Cancel" press=".onCancel"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

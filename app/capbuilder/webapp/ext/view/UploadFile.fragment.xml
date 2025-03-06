@@ -1,0 +1,13 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+                         xmlns="sap.m">
+    <Dialog id="uploadDialog" title="Import File" class="sapUiResponsiveContentPadding" beforeOpen=".onBeforeOpen"
+            afterClose=".onAfterClose">
+        <content>
+            <u:FileUploader id="fileUploader" icon="sap-icon://browse-folder" change="handleFiles" buttonText="{i18n>UploadDialog-browse}" fileType="json" placeholder="{i18n>UploadDialog-placeholder}" />
+        </content>
+
+        <endButton>
+            <Button id="cancelUpload" text="{i18n>UploadDialog-cancel}" press=".onCancel"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

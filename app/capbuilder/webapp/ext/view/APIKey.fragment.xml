@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+                         xmlns="sap.m">
+    <Dialog id= "keyDialog" title="OPEN AI API Key" class="sapUiResponsiveContentPadding" beforeOpen=".onBeforeOpen"
+            afterClose=".onAfterClose">
+        <content>
+           <VBox id="keyVBOX">
+                <Label id = "configLabel" text="{customModel>/configMessage}"/>
+                <TextArea id="keyInput" rows="6" growing="true" width="800px"
+                    placeholder="Type your text..." />
+            </VBox>
+              </content>
+        <beginButton>
+            <Button id="apiOK" text="OK" press=".onOk" type="Emphasized" enabled="true"/>
+        </beginButton>
+        <endButton>
+            <Button id="apiCancel" text="Cancel" press=".onCancel"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

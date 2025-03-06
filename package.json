@@ -1,0 +1,28 @@
+{
+  "name": "capbuilder",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^7",
+    "archiver": "^7.0.1",
+    "express": "^4",
+    "fs-extra": "^11.3.0",
+    "openai": "^4.86.1"
+  },
+  "devDependencies": {
+    "@cap-js/sqlite": "^1",
+    "@eslint/js": "^9.21.0",
+    "eslint": "^9.21.0",
+    "globals": "^16.0.0"
+  },
+  "scripts": {
+    "start": "cds-serve",
+    "watch-capbuilder": "cds watch --open capbuilder/webapp/index.html?sap-ui-xx-viewCache=false"
+  },
+  "sapux": [
+    "app/capbuilder"
+  ]
+}

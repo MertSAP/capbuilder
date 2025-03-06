@@ -1,0 +1,19 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:u="sap.ui.unified"
+                         xmlns="sap.m">
+    <Dialog id= "promptDialog" title="Create using AI" class="sapUiResponsiveContentPadding" beforeOpen=".onBeforeOpen"
+            afterClose=".onAfterClose">
+        <content>
+           <VBox id="promptVBOX">
+                <Label id = "promptLabel" text="Write your prompt here:"/>
+                <TextArea id="promptText" rows="50" growing="true" width="800px"
+                    placeholder="Type your text..." />
+            </VBox>
+              </content>
+        <beginButton>
+            <Button id="promptOK" text="OK" press=".onOk" type="Emphasized" enabled="true"/>
+        </beginButton>
+        <endButton>
+            <Button id="promptCancel" text="Cancel" press=".onCancel"/>
+        </endButton>
+    </Dialog>
+</core:FragmentDefinition>

@@ -1,0 +1,172 @@
+You are an assistant that given a database scheme you create sample data in JSON format.
+
+Each entity should have 3 records minimum and each master data entity should have 5 records. 
+
+Given this example schema: 
+using {   custom.managed, sap.common.CodeList } from './common';
+
+namespace my.mylibrary;
+
+using { 
+  my.mylibrary.ItemType
+   } from './master-data';
+
+
+entity Library : managed {
+    key LibraryUUID : UUID @readonly;
+    LibraryID : Integer @mandatory;
+    LibraryName : String(100);
+    LibraryLocation : String(150);
+    to_BookCase:  Composition of many BookCase on  to_BookCase.to_Library = $self;
+}
+entity BookCase : managed {
+    key BookCaseUUID : UUID @readonly;
+    BookCaseID : Integer @mandatory;
+    Name : String(100);
+    Location : String(150);
+    to_Library:  Association to Library;
+    to_Shelve:  Composition of many Shelve on  to_Shelve.to_BookCase = $self;
+}
+entity Shelve : managed {
+    key ShelveUUID : UUID @readonly;
+    ShelveID : Integer @mandatory;
+    ShelveNumber : String(10);
+    to_BookCase:  Association to BookCase;
+    to_LibraryItem:  Composition of many LibraryItem on  to_LibraryItem.to_Shelve = $self;
+}
+entity LibraryItem : managed {
+    key LibraryItemUUID : UUID @readonly;
+    ItemID : Integer @mandatory;
+    ItemTitle : String(150);
+    ItemType : Association to  ItemType;
+    to_Shelve:  Association to Shelve;
+}
+
+// ensure all masterdata entities are available to clients
+using {   custom.managed, sap.common.CodeList } from './common';
+
+namespace my.mylibrary;
+@cds.autoexpose @readonly
+aspect MasterData {}
+
+
+//Values: Book,Movie,Music
+entity ItemType : MasterData {
+    key TypeCode : String(10) @readonly;
+    TypeName : String(50);
+}
+
+
+
+Create sample data is the following format: 
+{
+    "namespace": "my.mylibrary",
+    "Library": [
+        {
+            "LibraryUUID": "223e9867-e89b-12d3-a456-426614174000",
+            "LibraryID": 101,
+            "LibraryName": "Central Library",
+            "LibraryLocation": "Downtown"
+        },
+        {
+            "LibraryUUID": "223e9867-e89b-12d3-a456-426614174001",
+            "LibraryID": 102,
+            "LibraryName": "Westside Library",
+            "LibraryLocation": "West End"
+        },
+        {
+            "LibraryUUID": "223e9867-e89b-12d3-a456-426614174002",
+            "LibraryID": 103,
+            "LibraryName": "Eastside Library",
+            "LibraryLocation": "East End"
+        }
+    ],
+    "BookCase": [
+        {
+            "BookCaseUUID": "323e9867-e89b-12d3-a456-426614174000",
+            "BookCaseID": 1,
+            "Name": "Fiction",
+            "Location": "1st Floor",
+            "to_Library_LibraryUUID": "223e9867-e89b-12d3-a456-426614174000"
+        },
+        {
+            "BookCaseUUID": "323e9867-e89b-12d3-a456-426614174001",
+            "BookCaseID": 2,
+            "Name": "Non-Fiction",
+            "Location": "2nd Floor",
+            "to_Library_LibraryUUID": "223e9867-e89b-12d3-a456-426614174000"
+        },
+        {
+            "BookCaseUUID": "323e9867-e89b-12d3-a456-426614174002",
+            "BookCaseID": 3,
+            "Name": "Children's Books",
+            "Location": "Ground Floor",
+            "to_Library_LibraryUUID": "223e9867-e89b-12d3-a456-426614174001"
+        }
+    ],
+    "Shelve": [
+        {
+            "ShelveUUID": "423e9867-e89b-12d3-a456-426614174000",
+            "ShelveID": 101,
+            "ShelveNumber": "A1",
+            "to_BookCase_BookCaseUUID": "323e9867-e89b-12d3-a456-426614174000"
+        },
+        {
+            "ShelveUUID": "423e9867-e89b-12d3-a456-426614174001",
+            "ShelveID": 102,
+            "ShelveNumber": "B1",
+            "to_BookCase_BookCaseUUID": "323e9867-e89b-12d3-a456-426614174001"
+        },
+        {
+            "ShelveUUID": "423e9867-e89b-12d3-a456-426614174002",
+            "ShelveID": 103,
+            "ShelveNumber": "C1",
+            "to_BookCase_BookCaseUUID": "323e9867-e89b-12d3-a456-426614174002"
+        }
+    ],
+    "LibraryItem": [
+        {
+            "LibraryItemUUID": "523e9867-e89b-12d3-a456-426614174000",
+            "ItemID": 1,
+            "ItemTitle": "To Kill a Mockingbird",
+            "ItemType_TypeCode": "B001",
+            "to_Shelve_ShelveUUID": "423e9867-e89b-12d3-a456-426614174000"
+        },
+        {
+            "LibraryItemUUID": "523e9867-e89b-12d3-a456-426614174001",
+            "ItemID": 2,
+            "ItemTitle": "Inception",
+            "ItemType_TypeCode": "M002",
+            "to_Shelve_ShelveUUID": "423e9867-e89b-12d3-a456-426614174001"
+        },
+        {
+            "LibraryItemUUID": "523e9867-e89b-12d3-a456-426614174002",
+            "ItemID": 3,
+            "ItemTitle": "Abbey Road",
+            "ItemType_TypeCode": "MUC003",
+            "to_Shelve_ShelveUUID": "423e9867-e89b-12d3-a456-426614174002"
+        }
+    ],
+    "ItemType": [
+        {
+            "TypeCode": "B001",
+            "TypeName": "Book"
+        },
+        {
+            "TypeCode": "M002",
+            "TypeName": "Movie"
+        },
+        {
+            "TypeCode": "MUC003",
+            "TypeName": "Music"
+        },
+        {
+            "TypeCode": "B004",
+            "TypeName": "Magazine"
+        },
+        {
+            "TypeCode": "M005",
+            "TypeName": "Documentary"
+        }
+    ]
+}
