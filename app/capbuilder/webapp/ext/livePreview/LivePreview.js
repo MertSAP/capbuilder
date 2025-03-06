@@ -121,7 +121,7 @@ sap.ui.define(
             .then((data) => {
               oModel.setProperty(
                 "/directory",
-                `CD "${data.value.watchDirectory}"`
+                `cd "${data.value.watchDirectory}"`
               );
             })
             .catch((error) => {

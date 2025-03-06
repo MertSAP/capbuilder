@@ -549,7 +549,7 @@ class CAPBuilderService extends cds.ApplicationService {
       req.res.setHeader("Content-Type", "application/zip");
       req.res.setHeader(
         "Content-Disposition",
-        `attachment; filename="${content.Services[0].ServiceTechnicalName}"`
+        `attachment; filename="${content.Services[0].ServiceTechnicalName}.zip"`
       );
 
       // Create ZIP archive
