@@ -86,7 +86,7 @@ module.exports = class DataGenerator {
           path.join(this.projectDir, "db", "data", completeFileName)
         );
 
-        isValid = existingHeaderRow === headerRow;
+        isValid = this.headersEqual(existingHeaderRow, headerRow);
       }
 
       if (isValid) {
@@ -94,17 +94,26 @@ module.exports = class DataGenerator {
       }
     }
   }
+  headersEqual(firstHeaderString, secondHeaderString) {
+    const firstHeader = firstHeaderString.split(";").sort();
+    const secondHeader = secondHeaderString.split(";").sort();
+    return JSON.stringify(firstHeader) === JSON.stringify(secondHeader);
+  }
+
+  saveData(data) {
+    fs.writeFileSync(
+      path.join(this.projectDir, "data.json"),
+      JSON.stringify(data, null, 4),
+      "utf8"
+    );
+  }
   async makeRequest() {
     const promptText = this.getPromptText();
     const aIParser = new AIParser();
 
     let response = await aIParser.generateData(promptText);
 
-    fs.writeFileSync(
-      path.join(this.projectDir, "data.json"),
-      JSON.stringify(response, null, 4),
-      "utf8"
-    );
+    this.saveData(response);
 
     await this.generateContents(response);
   }

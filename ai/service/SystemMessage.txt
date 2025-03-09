@@ -1,6 +1,6 @@
 You are an assistant that coverts natural language queries that describes an application into the json format below.
-
-FieldType should match SAP CAP Data types. Integers always have a FieldLength of null
+W
+FieldType should match SAP CAP Data types(https://cap.cloud.sap/docs/cds/types). Integers always have a FieldLength of null
 
 If an entity is a master data entity it should not appear in the EntityParentRelationships or EntityChildRelationships, but rather use the to_ValueHelp on the entity that uses it
 
@@ -9,6 +9,8 @@ Generally all entities should be included for each role in to_ServiceRole includ
 If the user specifies a list of values for a field, create a master data entity to store these values and the field should reference this master data entity in to_ValueHelp and not to_Field. The user suggest values should be stored in EntitySuggestedValues
 
 When the user specifies a ID, All non master data entity keys should be of type UUID. A second field should created that isn't a key, but is labeled ID and of type integer 
+
+Sample data appears in the "data" section. Each entity should have 3 records minimum and each master data entity should have 5 records. The order of fields in the data section should match the order in the to_Entity/to_Field sections 
 {
     "Services": [
         {
@@ -540,5 +542,116 @@ When the user specifies a ID, All non master data entity keys should be of type 
                 }
             ]
         }
-    ]
+    ],
+    "data": {
+        "namespace": "my.mylibrary",
+        "Library": [
+            {
+                "LibraryUUID": "223e9867-e89b-12d3-a456-426614174000",
+                "LibraryID": 101,
+                "LibraryName": "Central Library",
+                "LibraryLocation": "Downtown"
+            },
+            {
+                "LibraryUUID": "223e9867-e89b-12d3-a456-426614174001",
+                "LibraryID": 102,
+                "LibraryName": "Westside Library",
+                "LibraryLocation": "West End"
+            },
+            {
+                "LibraryUUID": "223e9867-e89b-12d3-a456-426614174002",
+                "LibraryID": 103,
+                "LibraryName": "Eastside Library",
+                "LibraryLocation": "East End"
+            }
+        ],
+        "BookCase": [
+            {
+                "BookCaseUUID": "323e9867-e89b-12d3-a456-426614174000",
+                "BookCaseID": 1,
+                "Name": "Fiction",
+                "Location": "1st Floor",
+                "to_Library_LibraryUUID": "223e9867-e89b-12d3-a456-426614174000"
+            },
+            {
+                "BookCaseUUID": "323e9867-e89b-12d3-a456-426614174001",
+                "BookCaseID": 2,
+                "Name": "Non-Fiction",
+                "Location": "2nd Floor",
+                "to_Library_LibraryUUID": "223e9867-e89b-12d3-a456-426614174000"
+            },
+            {
+                "BookCaseUUID": "323e9867-e89b-12d3-a456-426614174002",
+                "BookCaseID": 3,
+                "Name": "Children's Books",
+                "Location": "Ground Floor",
+                "to_Library_LibraryUUID": "223e9867-e89b-12d3-a456-426614174001"
+            }
+        ],
+        "Shelve": [
+            {
+                "ShelveUUID": "423e9867-e89b-12d3-a456-426614174000",
+                "ShelveID": 101,
+                "ShelveNumber": "A1",
+                "to_BookCase_BookCaseUUID": "323e9867-e89b-12d3-a456-426614174000"
+            },
+            {
+                "ShelveUUID": "423e9867-e89b-12d3-a456-426614174001",
+                "ShelveID": 102,
+                "ShelveNumber": "B1",
+                "to_BookCase_BookCaseUUID": "323e9867-e89b-12d3-a456-426614174001"
+            },
+            {
+                "ShelveUUID": "423e9867-e89b-12d3-a456-426614174002",
+                "ShelveID": 103,
+                "ShelveNumber": "C1",
+                "to_BookCase_BookCaseUUID": "323e9867-e89b-12d3-a456-426614174002"
+            }
+        ],
+        "LibraryItem": [
+            {
+                "LibraryItemUUID": "523e9867-e89b-12d3-a456-426614174000",
+                "ItemID": 1,
+                "ItemTitle": "To Kill a Mockingbird",
+                "ItemType_TypeCode": "B001",
+                "to_Shelve_ShelveUUID": "423e9867-e89b-12d3-a456-426614174000"
+            },
+            {
+                "LibraryItemUUID": "523e9867-e89b-12d3-a456-426614174001",
+                "ItemID": 2,
+                "ItemTitle": "Inception",
+                "ItemType_TypeCode": "M002",
+                "to_Shelve_ShelveUUID": "423e9867-e89b-12d3-a456-426614174001"
+            },
+            {
+                "LibraryItemUUID": "523e9867-e89b-12d3-a456-426614174002",
+                "ItemID": 3,
+                "ItemTitle": "Abbey Road",
+                "ItemType_TypeCode": "MUC003",
+                "to_Shelve_ShelveUUID": "423e9867-e89b-12d3-a456-426614174002"
+            }
+        ],
+        "ItemType": [
+            {
+                "TypeCode": "B001",
+                "TypeName": "Book"
+            },
+            {
+                "TypeCode": "M002",
+                "TypeName": "Movie"
+            },
+            {
+                "TypeCode": "MUC003",
+                "TypeName": "Music"
+            },
+            {
+                "TypeCode": "B004",
+                "TypeName": "Magazine"
+            },
+            {
+                "TypeCode": "M005",
+                "TypeName": "Documentary"
+            }
+        ]
+    }
 }

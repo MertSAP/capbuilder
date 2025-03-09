@@ -511,7 +511,22 @@ class CAPBuilderService extends cds.ApplicationService {
       var serviceUUID = "";
       try {
         let response = await aIParser.generateProject(promptText);
+        const data = response["data"];
+        delete response["data"];
         serviceUUID = await insertTempalte(response.Services[0], req);
+
+        const fileHelpers = new FileHelpers();
+        const projectPath = fileHelpers.getProjectPath(serviceUUID);
+
+        const directoryGenerator = new DirectoryGenerator(
+          response.Services[0].ServiceTechnicalName,
+          false,
+          projectPath
+        );
+        directoryGenerator.createDirectoryFromPath();
+
+        const dataGenerator = new DataGenerator(projectPath);
+        await dataGenerator.saveData(data);
       } catch (e) {
         return req.error(400, e.toString());
       }
