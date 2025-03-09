@@ -31,7 +31,7 @@ Why is this tool required when SAP has Joule? This is a free(AI Costs apply) Ope
 
 # Demo
 
-https://youtu.be/18X6PksGrnw
+https://youtu.be/Dx4h8iDzmNg
 
 # Getting Started
 
