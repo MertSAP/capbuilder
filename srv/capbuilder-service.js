@@ -10,6 +10,8 @@ const ProjectGenerator = require("./helpers/ProjectGenerator");
 const DirectoryGenerator = require("./generator/DirectoryGenerator.js");
 const DataGenerator = require("./generator/DataGenerator.js");
 const AIParser = require("../ai/AIParser.js");
+const NetworkGraphHelpers = require("./helpers/NetworkGraphHelpers.js");
+
 cds.on("served", async () => {
   const directoryGenerator = new DirectoryGenerator();
   directoryGenerator.cleanUpProjectDirectories();
@@ -47,7 +49,6 @@ class CAPBuilderService extends cds.ApplicationService {
           }
 
           if (entityRow.EntityIsRoot !== null && entityRow.EntityIsRoot) {
-            console.log("df");
             if (
               entityRow.EntityMasterData === null ||
               !entityRow.EntityMasterData
@@ -585,6 +586,17 @@ class CAPBuilderService extends cds.ApplicationService {
       return {
         success: true,
       };
+    });
+
+    this.on("getNetworkGraphData", async (req) => {
+      var content = "";
+      try {
+        content = await generateTemplate(req.params[0].ServiceUUID);
+      } catch (e) {
+        return req.error(400, e.toString());
+      }
+      const networkGraphHelpers = new NetworkGraphHelpers(content);
+      return networkGraphHelpers.getNetworkJSON();
     });
 
     this.on("downloadTemplate", async (req) => {

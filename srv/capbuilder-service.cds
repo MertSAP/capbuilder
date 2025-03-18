@@ -10,10 +10,11 @@ service CAPBuilderService @(path: '/processor') {
 
     entity Service           as projection on my.Service
         actions {
-            function downloadTemplate()  returns Binary;
-            function downloadProject()   returns Binary;
-            function livePreviewUpdate() returns String;
-            action   generateData()      returns Boolean;
+            function downloadTemplate()    returns Binary;
+            function downloadProject()     returns Binary;
+            function livePreviewUpdate()   returns String;
+            action   generateData()        returns Boolean;
+            function getNetworkGraphData() returns String;
         };
 
 

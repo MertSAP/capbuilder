@@ -1,0 +1,51 @@
+<core:FragmentDefinition xmlns:m="sap.m"
+		xmlns="sap.suite.ui.commons.networkgraph"
+		xmlns:mvc="sap.ui.core.mvc"
+		xmlns:core="sap.ui.core"
+		height="100%">
+		<m:VBox id="vbox">
+        <m:Label id="infoLavel" text="Network Graph is only visible on Active Entities" design="Bold" visible="{= !${settings>/displayGraph} }" />
+	<Graph
+			enableWheelZoom="false"
+			id="graph"
+			nodes="{graph>/nodes}"
+			lines="{graph>/lines}"
+			orientation="LeftRight"
+			visible="{settings>/displayGraph}"
+			groups="{graph>/groups}">
+		<nodes>
+			<Node id="node" key="{graph>key}"
+				  title="{graph>title}"
+				  icon="{graph>icon}"
+				  group="{graph>group}"
+				  attributes="{path:'graph>attributes', templateShareable:true}"
+				  shape="{graph>shape}"
+				  showActionLinksButton = "false"
+				  showDetailButton= "false"
+				  showExpandButton= "false"
+				  width="300">
+				<attributes>
+					<ElementAttribute id="ea"
+							label="{graph>label}"
+							value="{graph>value}"
+					/>
+				</attributes>
+			</Node>
+		</nodes>
+
+		<lines>
+			<Line id="line"
+			arrowPosition="Middle"
+					from="{graph>from}"
+					to="{graph>to}">
+			</Line>
+		</lines>
+			<groups>
+			<Group id="grpuip" key="{graph>key}"
+				   title="{graph>title}">
+			</Group>
+		</groups>
+	</Graph>
+	 </m:VBox>
+	
+</core:FragmentDefinition>

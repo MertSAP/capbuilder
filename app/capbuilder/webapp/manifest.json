@@ -233,6 +233,19 @@
                       "text": "Generate Test Data"
                     }
                   }
+                },
+                "body": {
+                  "sections": {
+                    "myCustomSection": {
+                      "template": "mert.capbuilder.app.capbuilder.ext.view.AssociationDiagram",
+                      "title": "Diagram",
+                      "onSectionLoaded": "mert.capbuilder.app.capbuilder.ext.associationdiagram.AssociationDiagram.onLoaded",
+                      "position": {
+                        "placement": "After",
+                        "anchor": "Role"
+                      }
+                    }
+                  }
                 }
               }
             }
