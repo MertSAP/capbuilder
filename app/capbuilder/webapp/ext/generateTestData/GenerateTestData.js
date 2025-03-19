@@ -1,4 +1,4 @@
-sap.ui.define(["sap/m/MessageToast"], function (MessageToast) {
+sap.ui.define([], function () {
   "use strict";
 
   return {
@@ -34,7 +34,7 @@ sap.ui.define(["sap/m/MessageToast"], function (MessageToast) {
             sap.m.MessageToast.show("Data error occured!");
           }
         })
-        .catch((error) => {
+        .catch(() => {
           sap.m.MessageToast.show("An Error Occured!");
         });
     },

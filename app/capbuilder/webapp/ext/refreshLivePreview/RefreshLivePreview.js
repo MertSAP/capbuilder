@@ -17,7 +17,7 @@ sap.ui.define(["sap/m/MessageToast"], function (MessageToast) {
             throw new Error(`HTTP error! Status: ${response.status}`);
           }
         })
-        .then((data) => {
+        .then(() => {
           MessageToast.show("Preview Refreshed");
         })
         .catch((error) => {
